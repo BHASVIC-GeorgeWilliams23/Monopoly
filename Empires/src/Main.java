@@ -1,11 +1,9 @@
 import org.w3c.dom.ls.LSOutput;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        String character = "";
-        Scanner scan = new Scanner(System.in);
-
         Countries Sweden = new Countries("Sweden", 1, 400000000000L);
         Countries Argentina = new Countries("Argentina", 2, 450000000000L);
         Countries Belgium = new Countries("Belgium", 3, 500000000000L);
@@ -33,7 +31,33 @@ public class Main {
         Canada.setStatus(false);
         Canada.setOwner(1);
         Canada.countryCard();
-        // Print out the details of each country
+
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Player> players = new ArrayList<Player>();
+        for (int i = 0; i <= 3; i++) {
+            System.out.println("Player " + (i+1)+ " Please select your character: PF - Pope Francis, XI - Xi Jinping, DT - Donald Trump, BJ - Boris Johnson: \n");
+            String characterC = scan.nextLine();
+            String character = "";
+            if (characterC.equals("PF")) {
+                character = "Pope Francis";
+            } else if (characterC.equals("XI")) {
+                character = "Xi Jinping";
+            } else if (characterC.equals("DT")) {
+                character = "Donald Trump";
+            } else if (characterC.equals("BJ")) {
+                character = "Boris Johnson";
+            } else {
+                System.out.println("Invalid input. Please try again.");
+                i--; // Decrement i to repeat the loop for correct input
+                continue;
+            }
+            players.add(new Player(i, character));
+            players.get(i).PrintPlayerDetails();
+        }
+
+
+
+
        // System.out.println(Sweden.getCost());
         Scanner scanner = new Scanner(System.in);
 
@@ -44,11 +68,15 @@ public class Main {
             Dice dice1 = new Dice();
             Dice dice2 = new Dice();
             dice1.roll();
+            System.out.println("First dice rolled a "+dice1.getValue());
             dice2.roll();
+            System.out.println("Your second dice rolled a "+dice2.getValue());
             int total = dice1.getValue() + dice2.getValue();
             System.out.println("The total of the two dice rolls is: " + total);
         } else {
             System.out.println("Invalid input. Please press 0 to roll the dice.");
         }
+        players.get(1).PrintPlayerDetails(); // Assuming PrintPlayerDetails() prints details internally
+
     }
 }
