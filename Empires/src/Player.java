@@ -1,7 +1,8 @@
 public class Player {
     private String pieceName;
-    int playerID;
-    int position;
+    private int playerID;
+    private int position;
+    private int money = 1500;
     public String getPieceName() {
         return pieceName;
     }
@@ -15,7 +16,20 @@ public class Player {
     public int getPosition() {
         return position;
     }
+    public void setPosition(int newPosition){
+        position = newPosition;
+    }
+    public int getMoney(){
+        return money;
+    }
     public void PrintPlayerDetails(){
         System.out.println("Player "+(playerID+1) +" is " + pieceName);
+    }
+    public void move(int moveSpaces){
+        position = position + moveSpaces;
+        System.out.println(pieceName+ " landed on " + getPosition());
+    }
+    public void takeTurn(Player player, int moveSpaces){
+
     }
 }
