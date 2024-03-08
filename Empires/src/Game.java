@@ -33,7 +33,7 @@ public class Game {
         int newPosition = player.getPosition() + diceTotalValue;
         System.out.println("Moving "+player.getPieceName()+" to "+ newPosition);
         player.setPosition(newPosition);
-        Board.board[newPosition]=
+        Board.board[newPosition]=player.getSymbol();
         Board.PrintBoard();
     }
 }

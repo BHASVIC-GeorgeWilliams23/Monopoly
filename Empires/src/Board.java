@@ -36,7 +36,7 @@ public class Board {
 
     public static void PrintBoard() {
         //String[] board = new String[]{"GO", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "MT", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"};
-        System.out.println(" _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+        System.out.println("-----------------------------------------");
         System.out.println("| " + board[0] + " | " + board[1] + " | " + board[2] + " | " + board[3] + " | " + board[4] + " | " + board[5] + " | " + board[6] + " | " + board[7] + " |");
         System.out.println("| " + board[25] + " |                             " + "| " + board[8] + " |");
         System.out.println("| " + board[24] + " |                             " + "| " + board[9] + " |");
@@ -44,7 +44,7 @@ public class Board {
         System.out.println("| " + board[22] + " |                             " + "| " + board[11] + " |");
         System.out.println("| " + board[21] + " |                             " + "| " + board[12] + " |");
         System.out.println("| " + board[20] + " | " + board[19] + " | " + board[18] + " | " + board[17] + " | " + board[16] + " | " + board[15] + " | " + board[14] + " | " + board[13] + " |");
-        System.out.println(" ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+        System.out.println("-----------------------------------------");
     }
 
     public static void chanceCards() {

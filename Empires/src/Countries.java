@@ -83,9 +83,6 @@ public class Countries {
             System.out.println("Status: Owned by: "+getOwner());
             int rent = 0;
             switch (level){
-                case 0:
-                    rent = l0rent;
-                    break;
                 case 1:
                     rent = l1rent;
                     break;
@@ -96,7 +93,12 @@ public class Countries {
                     rent = l3rent;
                     break;
             }
-            System.out.println("Player "+getOwner() +" has upgraded this country to level "+level+"...\nPay "+rent);
+            if(level == 0){
+                System.out.println("The rent for this country is " + l0rent);
+            }
+            else{
+                System.out.println("Player "+getOwner() +" has upgraded this country to level "+level+"...\nPay "+rent);
+            }
             System.out.println("---------------------------------------");
         }
         else{

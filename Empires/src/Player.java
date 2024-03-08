@@ -1,6 +1,7 @@
 public class Player {
     private String pieceName;
     private int playerID;
+    private String symbol;
     private int position;
     private int money = 1500;
     public String getPieceName() {
@@ -9,9 +10,10 @@ public class Player {
     public int getPlayerID() {
         return playerID;
     }
-    public Player(int newID, String newName) {
+    public Player(int newID, String newName, String symbol) {
         playerID = newID;
         pieceName = newName;
+        symbol = this.symbol;
     }
     public int getPosition() {
         return position;
@@ -26,10 +28,13 @@ public class Player {
         money = newMoney;
     }
     public void PrintPlayerDetails(){
-        System.out.println("Player "+(playerID+1) +" is " + pieceName);
+        System.out.println("Player "+(playerID+1) +" is " + pieceName + "\nSymbol is "+ symbol);
     }
     public void move(int moveSpaces){
         position = position + moveSpaces;
         System.out.println(pieceName+ " landed on " + getPosition());
+    }
+    public String getSymbol(){
+        return symbol;
     }
 }
