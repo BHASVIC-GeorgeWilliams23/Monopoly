@@ -22,14 +22,14 @@ public class Player {
     public int getMoney(){
         return money;
     }
+    public void setMoney(int newMoney){
+        money = newMoney;
+    }
     public void PrintPlayerDetails(){
         System.out.println("Player "+(playerID+1) +" is " + pieceName);
     }
     public void move(int moveSpaces){
         position = position + moveSpaces;
         System.out.println(pieceName+ " landed on " + getPosition());
-    }
-    public void takeTurn(Player player, int moveSpaces){
-
     }
 }

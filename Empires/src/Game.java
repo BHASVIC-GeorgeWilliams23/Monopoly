@@ -13,9 +13,6 @@ public class Game {
     public int getDiceValue() {
         return diceValue;
     }
-
-
-
     private ArrayList<Player> players = new ArrayList<Player>();
 
     public Game(ArrayList<Player> players){
@@ -36,7 +33,7 @@ public class Game {
         int newPosition = player.getPosition() + diceTotalValue;
         System.out.println("Moving "+player.getPieceName()+" to "+ newPosition);
         player.setPosition(newPosition);
-        Board.
+        Board.board[newPosition]=
         Board.PrintBoard();
     }
 }
