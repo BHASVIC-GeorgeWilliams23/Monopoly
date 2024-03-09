@@ -30,8 +30,32 @@ public class Main {
         Countries Germany = new Countries("Germany", 23, 4000, 155, 165, 175, 185);
         Countries China = new Countries("China", 24, 14000, 160, 170, 180, 190);
         Countries USA = new Countries("United States of America", 25, 20000, 165, 175, 185, 195);
-        USA.setStatus(true);
-        USA.countryCard();
+        ArrayList<Countries> countries = new ArrayList<>();
+        countries.add(Sweden);
+        countries.add(Argentina);
+        countries.add(Belgium);
+        countries.add(Taiwan);
+        countries.add(Poland);
+        countries.add(Switzerland);
+        countries.add(SaudiArabia);
+        countries.add(Netherlands);
+        countries.add(Turkey);
+        countries.add(Indonesia);
+        countries.add(Spain);
+        countries.add(Australia);
+        countries.add(Mexico);
+        countries.add(Russia);
+        countries.add(Canada);
+        countries.add(Brazil);
+        countries.add(Italy);
+        countries.add(France);
+        countries.add(UK);
+        countries.add(India);
+        countries.add(Japan);
+        countries.add(Germany);
+        countries.add(China);
+        countries.add(USA);
+
         Scanner scan = new Scanner(System.in);
 
         int Characterselect[] = new int[4];
@@ -41,7 +65,7 @@ public class Main {
         Characterselect[3] = 0;
         ArrayList<Player> players = new ArrayList<Player>();
         for (int i = 0; i <= 3; i++) {
-            System.out.println("Player " + (i + 1) + " Please select your character: PF - Pope Francis (\u002A\u002A), XI - Xi Jinping (^^), DT - Donald Trump ($$), BJ - Boris Johnson: (££)");
+            System.out.println("Player " + (i + 1) + " Please select your character: \nPF - Pope Francis (\u002A\u002A) \nXI - Xi Jinping (^^) \nDT - Donald Trump ($$), \nBJ - Boris Johnson: (££)\n");
             String characterC = scan.nextLine();
             String character = "";
             String symbol = "";
@@ -53,8 +77,7 @@ public class Main {
                 } else {
                     character = "Pope Francis";
                     symbol = "\u002A\u002A";
-                    Characterselect[0] = 1;
-                }
+                    Characterselect[0] = 1;                }
             } else if (characterC.equals("XI")) {
                 if (Characterselect[1] == 1) {
                     System.out.println("Character already taken.");
@@ -89,8 +112,17 @@ public class Main {
             players.add(new Player(i, character,symbol));
             players.get(i).PrintPlayerDetails();
         }
+        Taiwan.setStatus(true);
+        Taiwan.setOwner(players.get(0));
+        System.out.println(players.get(0).getSymbol());
+        int currentPlayerIndex = 0; // Start with the first player
         Game game = new Game(players);
-        game.turn(players.get(1));
+    
+        while (true) {
+            Player currentPlayer = players.get(currentPlayerIndex);
+            game.turn(currentPlayer, countries);
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        }
         
 
     }}
