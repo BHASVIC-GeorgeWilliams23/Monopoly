@@ -78,7 +78,8 @@ public class Main {
                     character = "Pope Francis";
                     symbol = "\u002A\u002A";
                     Characterselect[0] = 1;                }
-            } else if (characterC.equals("XI")) {
+            }
+            else if (characterC.equals("XI")) {
                 if (Characterselect[1] == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
@@ -108,21 +109,24 @@ public class Main {
                     symbol = "££";
                     Characterselect[3] = 1;
                 }
+            } else if (!characterC.equals("BJ") || !characterC.equals("XI") || !characterC.equals("DT") || !characterC.equals("PF")) {
+                System.out.println("Invalid character. Please try inputting again.");
+                i--;
+                continue;
+
             }
             players.add(new Player(i, character,symbol));
             players.get(i).PrintPlayerDetails();
         }
-        Taiwan.setStatus(true);
-        Taiwan.setOwner(players.get(0));
         System.out.println(players.get(0).getSymbol());
         int currentPlayerIndex = 0; // Start with the first player
         Game game = new Game(players);
-    
+
         while (true) {
             Player currentPlayer = players.get(currentPlayerIndex);
             game.turn(currentPlayer, countries);
             currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
         }
-        
+
 
     }}

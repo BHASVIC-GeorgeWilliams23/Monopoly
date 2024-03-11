@@ -31,7 +31,7 @@ public class Board {
     static final String P27 = "26";
 
     static String[] board = new String[]{P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P27};
-
+    static String[] boardPlaces = new String[]{"GO", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "MT", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"};
 
 
     public static void PrintBoard() {
