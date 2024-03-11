@@ -64,8 +64,9 @@ public class Game {
                 else {
                     if(country.getStatus()==false){
                         sleep(500);
-                        System.out.println("Would you like to buy this property for "+country.getCost()+" ? (Y/N)");
+                        System.out.println("Would you like to buy this property for "+country.getCost()+" ? (Y/N) (You have "+player.getMoney()+" in the bank)");
                         String x;
+                        country.countryCard();
                         Scanner propertyScanner = new Scanner(System.in);
                         x = propertyScanner.nextLine();
                         if (x.equals("Y")){
