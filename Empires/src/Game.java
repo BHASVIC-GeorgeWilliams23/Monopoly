@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -48,10 +49,80 @@ public class Game {
         System.out.println("\nTotal spaces to move: "+diceTotalValue);
         int originalPosition = player.getPosition();
         String originalSpaceValue = Board.boardPlaces[originalPosition];
+        if (dice1value == dice2value){
+            System.out.println("Double! \nYou get a chance card:");
+            Random pickCard = new Random();
+            int card = pickCard.nextInt(10);
+            if (card == 0){
+                System.out.println("\nFree trip to Poland.");
+                player.setPosition(5);
+                diceTotalValue = 0;
+            }
+            else if (card == 1){
+                System.out.println("\nFree trip to Mexico.");
+                player.setPosition(14);
+                diceTotalValue = 0;
+            }
+            else if (card == 2){
+                System.out.println("\nFree trip to India.");
+                player.setPosition(21);
+                diceTotalValue = 0;
+            }
+            else if (card == 3){
+                System.out.println("\nFlown forward 1 space.");
+                diceTotalValue = 1;
+            }
+            else if (card == 4){
+                System.out.println("\nFlown back 3 spaces.");
+                player.setPosition(originalPosition-3);
+            }
+            else if (card == 5){
+                System.out.println("\nSued, lose 300.");
+                player.setMoney(-300);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else if (card == 6){
+                System.out.println("\nRaised your own salary, collect 300.");
+                player.setMoney(300);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else if (card == 7){
+                System.out.println("\nRecession, lose 200.");
+                player.setMoney(-200);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else if (card == 8){
+                System.out.println("\nYou win the election, collect 500.");
+                player.setMoney(500);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else if (card == 9){
+                System.out.println("\nRigged election, lose 500.");
+                player.setMoney(-500);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else if (card == 10){
+                System.out.println("\nYou win the election, collect 200.");
+                player.setMoney(200);
+                System.out.println("Money: $" + player.getMoney());
+            }
+            else{
+                int newPosition = player.getPosition() + diceTotalValue;
+                System.out.println("Moving "+player.getPieceName()+" to "+ newPosition);
+                player.setPosition(newPosition);
+            }
+}
    //     System.out.println("original position" + player.getPosition());
         int newPosition = player.getPosition() + diceTotalValue;
+        if (newPosition > 25){
+            diceTotalValue = newPosition - 26;
+            player.setPosition(0);
+            newPosition = player.getPosition() + diceTotalValue;
+            player.setMoney(200);
+            System.out.println("\nPassed go collect 200");
+            System.out.println("Money: $" + player.getMoney());
+        }
         sleep(500);
-        System.out.println("Moving "+player.getPieceName()+" to "+ newPosition);
         player.setPosition(newPosition);
         Board.board[newPosition]=player.getSymbol();
         Board.board[originalPosition]= originalSpaceValue;
@@ -95,23 +166,27 @@ public class Game {
                                 upgradeYesOrNo = propertyScanner.nextLine();
                                 if (!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")) {
                                     System.out.println("Invalid input. Please try  again.");
-                                } else if (x.equals("Y")) {
+                                } else if (upgradeYesOrNo.equals("Y")) {
                                     System.out.println("Here are your owned properties: ");
-                                    int i;
-                                    for (i=0;i<26;i++) {
-                                        if(countries.get(i).getOwner()==player){
-                                            System.out.println(countries.get(i).getName() + "\nPosition: "+countries.get(i).getPosition());
+                                    for (int j = 0; j < countries.size(); j++) {
+                                        if(countries.get(j).getOwner()==player){
+                                            System.out.println(countries.get(j).getName() + "\nPosition: "+countries.get(j).getPosition());
                                         }
                                     }
                                     System.out.println("Which country would you like to upgrade? ");
                                     int y;
                                     y = Integer.valueOf(propertyScanner.nextLine());
-                                    System.out.println("Upgrading "+country);
+                                    if (y >= 0 && y < countries.size() && countries.get(y).getOwner() == player) {
+                                        System.out.println("Upgrading " + countries.get(y).getName());
+                                        // Add your upgrade logic here
+                                    } else {
+                                        System.out.println("Invalid country selection. Please try again.");
                                 }
 
                             }
                         }
                     }
+                }
                     else{
                         System.out.println("Unlucky!\n"+country.getOwner().getPieceName()+" owns this property!\n Pay "+country.getRent());
                         player.setMoney(-country.getRent());
