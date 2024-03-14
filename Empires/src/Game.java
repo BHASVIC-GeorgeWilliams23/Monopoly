@@ -135,6 +135,9 @@ public class Game {
                 if (country.getOwner() == player) {
                     System.out.println("You already own this property.");
                 }
+                else if(country.getPosition()==13){
+                    System.out.println("Miss a turn! You landed on position 13!");
+                }
                 else {
                     if(country.getStatus()==false){
                         sleep(500);
@@ -207,6 +210,7 @@ public class Game {
                     }
                 }
             }
+
         }
     }
 }
