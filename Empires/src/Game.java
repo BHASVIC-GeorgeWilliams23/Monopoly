@@ -170,18 +170,28 @@ public class Game {
                                     System.out.println("Here are your owned properties: ");
                                     for (int j = 0; j < countries.size(); j++) {
                                         if(countries.get(j).getOwner()==player){
-                                            System.out.println(countries.get(j).getName() + "\nPosition: "+countries.get(j).getPosition());
+                                            System.out.println(countries.get(j).getName() + "\n--Position: "+countries.get(j).getPosition());
+                                            System.out.println("--Current Level: "+countries.get(j).getLevel());
+                                            System.out.println("--Cost to level-up: "+countries.get(j).getCost());
                                         }
                                     }
-                                    System.out.println("Which country would you like to upgrade? ");
+                                    System.out.println("Which country would you like to upgrade? \nYou must pay the original cost again to upgrade the level.\nIf you decide not to, enter 0.");
                                     int y;
                                     y = Integer.valueOf(propertyScanner.nextLine());
-                                    if (y >= 0 && y < countries.size() && countries.get(y).getOwner() == player) {
-                                        System.out.println("Upgrading " + countries.get(y).getName());
-                                        // Add your upgrade logic here
-                                    } else {
+                                    int index = y - 1;
+                                    if (y > 0 && y < countries.size() && countries.get(index).getOwner() == player && player.getMoney()>=countries.get(index).getCost()) {
+                                        
+                                        System.out.println("Upgrading " + countries.get(index).getName());
+                                        countries.get(index).levelUp();
+                                        System.out.println(countries.get(index).getName() + " is now level "+ countries.get(index).getLevel());
+                                    }
+                                    else if(y==0){
+                                        break;
+                                    } 
+                                    else {
                                         System.out.println("Invalid country selection. Please try again.");
-                                }
+                                    }
+                              
 
                             }
                         }
