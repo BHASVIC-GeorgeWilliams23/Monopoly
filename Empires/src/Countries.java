@@ -1,5 +1,3 @@
-    import org.w3c.dom.ls.LSOutput;
-
     public class Countries {
         private String name;
         private int position;
@@ -56,7 +54,6 @@
         }
 
         public void setPosition(int position) {
-            position = position;
         }
         public int getRent(){
             int rent = 0;

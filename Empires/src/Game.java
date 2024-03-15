@@ -1,10 +1,7 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Game {
     private int diceValue;
@@ -49,6 +46,8 @@ public class Game {
         System.out.println("\nTotal spaces to move: "+diceTotalValue);
         int originalPosition = player.getPosition();
         String originalSpaceValue = Board.boardPlaces[originalPosition];
+
+        // Chance Cards
         if (dice1value == dice2value){
             System.out.println("Double! \nYou get a chance card:");
             Random pickCard = new Random();
@@ -112,14 +111,19 @@ public class Game {
                 player.setPosition(newPosition);
             }
 }
-   //     System.out.println("original position" + player.getPosition());
+   //   Passing Go Logic
         int newPosition = player.getPosition() + diceTotalValue;
         if (newPosition > 25){
             diceTotalValue = newPosition - 26;
             player.setPosition(0);
             newPosition = player.getPosition() + diceTotalValue;
-            player.setMoney(200);
-            System.out.println("\nPassed go collect 200");
+            player.setMoney(500);
+            System.out.println("\nPassed go collect 500");
+            System.out.println("Money: $" + player.getMoney());
+        }
+        if (newPosition == 0){
+            player.setMoney(1000);
+            System.out.println("\nYou landed on GO!\nCollect 1000");
             System.out.println("Money: $" + player.getMoney());
         }
         sleep(500);
@@ -129,13 +133,14 @@ public class Game {
         sleep(500);
         Board.PrintBoard();
         System.out.println(newPosition);
+        // Landing on countries and buying or not
         for (Countries country : countries) {
             if (country.getPosition() == newPosition) {
                 System.out.println(player.getPieceName() + " landed on " + country.getName());
                 if (country.getOwner() == player) {
                     System.out.println("You already own this property.");
                 }
-                else if(country.getPosition()==13){
+                else if(newPosition==13){
                     System.out.println("Miss a turn! You landed on position 13!");
                 }
                 else {
@@ -164,7 +169,7 @@ public class Game {
                                 }
                             } else {
                                 String upgradeYesOrNo = "";
-
+//                          upgrading properties
                                 System.out.println("Would you like to upgrade one of your properties? (Y/N)");
                                 upgradeYesOrNo = propertyScanner.nextLine();
                                 if (!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")) {
@@ -200,6 +205,7 @@ public class Game {
                         }
                     }
                 }
+                // Paying Rent
                     else{
                         System.out.println("Unlucky!\n"+country.getOwner().getPieceName()+" owns this property!\n Pay "+country.getRent());
                         player.setMoney(-country.getRent());

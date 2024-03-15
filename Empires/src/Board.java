@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-import java.util.ArrayList;
 import java.util.Random;
 public class Board {
     static final String P1 = "GO";
