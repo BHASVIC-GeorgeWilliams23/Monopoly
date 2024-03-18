@@ -62,6 +62,8 @@ public class Main {
         Characterselect[2] = 0;
         Characterselect[3] = 0;
         ArrayList<Player> players = new ArrayList<Player>();
+
+
         for (int i = 0; i <= 3; i++) {
             System.out.println("Player " + (i + 1) + " Please select your character: \nPF - Pope Francis (\u002A\u002A) \nXI - Xi Jinping (^^) \nDT - Donald Trump ($$), \nBJ - Boris Johnson: (££)\n");
             String characterC = scan.nextLine();

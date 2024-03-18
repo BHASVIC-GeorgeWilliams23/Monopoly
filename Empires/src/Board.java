@@ -44,24 +44,5 @@ public class Board {
         System.out.println("| " + board[20] + " | " + board[19] + " | " + board[18] + " | " + board[17] + " | " + board[16] + " | " + board[15] + " | " + board[14] + " | " + board[13] + " |");
         System.out.println("-----------------------------------------");
     }
-
-    public static void chanceCards() {
-        //only run if player rolls a double
-        Random pickCard = new Random();
-        int card = pickCard.nextInt(10);
-        System.out.println(card);
-        String[] Cards = new String[]{"free trip to Poland", "free trip to Mexico", "free trip to India", "Flown forward 1 space", "flown back 3 spaces", "Sued, lose 100", "Recession lose 200", "You raised you salary, collect 100", "Fly to GO", "you win the election collect 200"};
-        System.out.println(Cards[card]);
-    }
-    public void move(){
-        
-    }
-   // public static void PassGo(){
-    //    int Pos = Integer.valueOf(board[22]);
-     //   if (Pos + total > 25){
-    //        getMoney=getMoney + 200;
-     //   }
-    }
-//}
-
+}
  

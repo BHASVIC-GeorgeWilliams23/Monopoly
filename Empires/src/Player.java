@@ -1,9 +1,12 @@
+import java.util.List;
+
 public class Player {
     private String pieceName;
     private int playerID;
     private String symbol;
     private int position;
-    private int money = 3000;
+    private boolean bankrupted;
+    private int money =-1;
     public String getPieceName() {
         return pieceName;
     }
@@ -21,8 +24,24 @@ public class Player {
     public void setPosition(int newPosition){
         position = newPosition;
     }
-    public void bankrupt(){
-        System.out.println("You ran out of money... better luck nexttime!");
+    public void bankrupt(Player player, List<Countries> countries) {
+        System.out.println(pieceName + " ran out of money, bye bye....");
+        setMoney(0);
+        for (int j = 0; j < countries.size(); j++) {
+            if (countries.get(j).getOwner() == player) {
+                System.out.println(countries.get(j).getName() + " is now up for sale " + " at position "+countries.get(j).getPosition());
+                countries.get(j).setStatus(false);
+                bankrupted = true;
+            }
+        }
+    }
+    public boolean isBankrupt(){
+        if(bankrupted == true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     public int getMoney(){
         return money;
