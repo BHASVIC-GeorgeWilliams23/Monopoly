@@ -6,7 +6,7 @@ public class Player {
     private String symbol;
     private int position;
     private boolean bankrupted;
-    private int money =-1;
+    private int money =3500;
     public String getPieceName() {
         return pieceName;
     }
