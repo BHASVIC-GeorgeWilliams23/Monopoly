@@ -27,6 +27,56 @@ public class Game {
     public ArrayList<Player> getPlayers (){
         return players;
     }
+    public void upgrade(Player player, List<Countries> countries){
+        String upgradeYesOrNo = "";
+        while(!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")){
+            Scanner yesNoScanner = new Scanner(System.in);
+            //                          upgrading properties
+            System.out.println("Would you like to upgrade one of your properties? (Y/N)");
+            upgradeYesOrNo = yesNoScanner.nextLine();
+            if (!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")) {
+                System.out.println("Invalid input. Please try  again.");
+            }
+        } if (upgradeYesOrNo.equals("Y")) {
+            System.out.println("Here are your owned properties: ");
+            for (int j = 0; j < countries.size(); j++) {
+                if (countries.get(j).getOwner() == player) {
+                    System.out.println(countries.get(j).getName() + "\n--Position: " + countries.get(j).getPosition());
+                    System.out.println("--Current Level: " + countries.get(j).getLevel());
+                    System.out.println("--Cost to level-up: " + countries.get(j).getCost());
+                }
+            }
+            String y = "";
+            while (!y.equals("0") && !y.equals("1") &&!y.equals("2") && !y.equals("3") &&!y.equals("4") && !y.equals("5") &&!y.equals("6") && !y.equals("7") &&!y.equals("8") && !y.equals("9") &&!y.equals("1") && !y.equals("10") &&!y.equals("11") && !y.equals("12") && !y.equals("14") &&!y.equals("15") && !y.equals("16") &&!y.equals("17") && !y.equals("18") &&!y.equals("19") && !y.equals("20") &&!y.equals("21") && !y.equals("22") &&!y.equals("23") && !y.equals("24") && !y.equals("25") && !y.equals("26") && !y.equals("27")) {
+                System.out.println("Which country would you like to upgrade? \nYou must pay the original cost again to upgrade the level.\nIf you decide not to, enter 0.");
+                Scanner scanner = new Scanner(System.in);
+                y = scanner.nextLine();
+            }
+            int indexBase = Integer.parseInt(y);
+            int index = indexBase-1;
+            int yInt = Integer.parseInt(y);
+            if (yInt > 0 && yInt < countries.size() && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
+
+                System.out.println("Upgrading " + countries.get(index).getName());
+                countries.get(index).levelUp();
+                System.out.println(countries.get(index).getName() + " is now level " + countries.get(index).getLevel());
+            } else if (yInt == 0) {
+            } else if (player.getMoney() < countries.get(index).getCost()) {
+                System.out.println("You do not have enough money!");
+            } else if (countries.get(index).getOwner() != player) {
+                System.out.println("You do not own this property... cheeky boy");
+            } else if (countries.get(index-1).getOwner() == player) {
+                System.out.println("Upgrading " + countries.get(index-1).getName());
+                countries.get(index-1).levelUp();
+                System.out.println(countries.get(index-1).getName() + " is now level " + countries.get(index-1).getLevel());
+
+            } else {
+                System.out.println("Invalid country selection. Please try again.");
+            }
+
+
+        }
+    }
     public void turn(Player player, List<Countries> countries) {
         if(player.isBankrupt() == false) {
             System.out.println("\n" + player.getPieceName() + "'s turn!\nMoney: $" + player.getMoney());
@@ -114,6 +164,7 @@ public class Game {
                 player.setMoney(1000);
                 System.out.println("\nYou landed on GO!\nCollect 1000");
                 System.out.println("Money: $" + player.getMoney());
+                upgrade(player,countries);
             }
             sleep(500);
             player.setPosition(newPosition);
@@ -128,6 +179,7 @@ public class Game {
                     System.out.println(player.getPieceName() + " landed on " + country.getName());
                     if (country.getOwner() == player) {
                         System.out.println("You already own this property.");
+                        upgrade(player,countries);
                     } else if (newPosition == 13) {
                         System.out.println("Miss a turn! You landed on position 13!");
                     } else {
@@ -155,40 +207,7 @@ public class Game {
                                         System.out.println("You do not have enough money!");
                                     }
                                 } else {
-                                    String upgradeYesOrNo = "";
-                                    //                          upgrading properties
-                                    System.out.println("Would you like to upgrade one of your properties? (Y/N)");
-                                    upgradeYesOrNo = propertyScanner.nextLine();
-                                    if (!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")) {
-                                        System.out.println("Invalid input. Please try  again.");
-                                    } else if (upgradeYesOrNo.equals("Y")) {
-                                        System.out.println("Here are your owned properties: ");
-                                        for (int j = 0; j < countries.size(); j++) {
-                                            if (countries.get(j).getOwner() == player) {
-                                                System.out.println(countries.get(j).getName() + "\n--Position: " + countries.get(j).getPosition());
-                                                System.out.println("--Current Level: " + countries.get(j).getLevel());
-                                                System.out.println("--Cost to level-up: " + countries.get(j).getCost());
-                                            }
-                                        }
-                                        System.out.println("Which country would you like to upgrade? \nYou must pay the original cost again to upgrade the level.\nIf you decide not to, enter 0.");
-                                        int y;
-                                        y = Integer.valueOf(propertyScanner.nextLine());
-                                        int index = y - 1;
-                                        if (y > 0 && y < countries.size() && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
-
-                                            System.out.println("Upgrading " + countries.get(index).getName());
-                                            countries.get(index).levelUp();
-                                            System.out.println(countries.get(index).getName() + " is now level " + countries.get(index).getLevel());
-                                        } else if (y == 0) {
-                                            break;
-                                        } else if (player.getMoney() < countries.get(index).getCost()) {
-                                            System.out.println("You do not have enough money!");
-                                        } else {
-                                            System.out.println("Invalid country selection. Please try again.");
-                                        }
-
-
-                                    }
+                                   upgrade(player,countries);
                                 }
                             }
                         }
@@ -199,7 +218,7 @@ public class Game {
                             country.getOwner().setMoney(country.getRent());
 
                             System.out.println(player.getPieceName() + " you now have " + player.getMoney());
-                            System.out.println();
+                            upgrade(player,countries);
                         }
                     }
                 }

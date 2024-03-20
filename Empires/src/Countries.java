@@ -42,17 +42,9 @@
         public int getCost() {
             return cost;
         }
-
-        public int getL0rent(){ return l0rent;}
-        public int getL1rent(){ return l1rent;}
-        public int getL2rent(){ return l2rent;}
-        public int getL3rent(){ return l3rent;}
-
-
         public int getLevel() {
             return level;
         }
-
         public void setPosition(int position) {
         }
         public int getRent(){

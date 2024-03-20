@@ -26,8 +26,8 @@ public class Main {
         Countries India = new Countries("India", 21, 2500, 145, 155, 165, 175);
         Countries Japan = new Countries("Japan", 22, 3500, 150, 160, 170, 180);
         Countries Germany = new Countries("Germany", 23, 4000, 155, 165, 175, 185);
-        Countries China = new Countries("China", 24, 14000, 160, 170, 180, 190);
-        Countries USA = new Countries("United States of America", 25, 20000, 165, 175, 185, 195);
+        Countries China = new Countries("China", 24, 14000, 500, 600, 1000, 2500);
+        Countries USA = new Countries("United States of America", 25, 20000, 700, 800, 2000, 5000);
         ArrayList<Countries> countries = new ArrayList<>();
         countries.add(Sweden);
         countries.add(Argentina);
