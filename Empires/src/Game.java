@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -55,7 +56,7 @@ public class Game {
             int indexBase = Integer.parseInt(y);
             int index = indexBase-1;
             int yInt = Integer.parseInt(y);
-            if (yInt > 0 && yInt < countries.size() && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
+            if (yInt > 0 && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
 
                 System.out.println("Upgrading " + countries.get(index).getName());
                 countries.get(index).levelUp();
@@ -182,6 +183,7 @@ public class Game {
                         upgrade(player,countries);
                     } else if (newPosition == 13) {
                         System.out.println("Miss a turn! You landed on position 13!");
+                        break;
                     } else {
                         if (country.getStatus() == false) {
                             sleep(500);
@@ -207,7 +209,7 @@ public class Game {
                                         System.out.println("You do not have enough money!");
                                     }
                                 } else {
-                                   upgrade(player,countries);
+                                    upgrade(player,countries);
                                 }
                             }
                         }

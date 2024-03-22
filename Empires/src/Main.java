@@ -16,6 +16,7 @@ public class Main {
         Countries Indonesia = new Countries("Indonesia", 10, 900, 95, 105, 115, 125);
         Countries Spain = new Countries("Spain", 11, 1000, 100, 110, 120, 130);
         Countries Australia = new Countries("Australia", 12, 1100, 105, 115, 125, 135);
+        Countries MissATurn = new Countries("Miss A Turn",0,0,0,0,0,0);
         Countries Mexico = new Countries("Mexico", 14, 1300, 110, 120, 130, 140);
         Countries Russia = new Countries("Russia", 15, 1500, 115, 125, 135, 145);
         Countries Canada = new Countries("Canada", 16, 1700, 120, 130, 140, 150);
@@ -41,6 +42,7 @@ public class Main {
         countries.add(Indonesia);
         countries.add(Spain);
         countries.add(Australia);
+        countries.add(MissATurn);
         countries.add(Mexico);
         countries.add(Russia);
         countries.add(Canada);
@@ -56,58 +58,63 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        int Characterselect[] = new int[4];
-        Characterselect[0] = 0;
-        Characterselect[1] = 0;
-        Characterselect[2] = 0;
-        Characterselect[3] = 0;
+        int CharacterA = -1;
+
+        while(CharacterA > 4 || CharacterA < 2) {
+            System.out.println("How many players will be playing? (2, 3, or 4) ");
+            CharacterA = Integer.parseInt(scan.nextLine());
+        }
+
         ArrayList<Player> players = new ArrayList<Player>();
+        int PFQ = 0;
+        int DTQ = 0;
+        int BJQ = 0;
+        int XIQ = 0;
 
-
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= CharacterA-1; i++) {
             System.out.println("Player " + (i + 1) + " Please select your character: \nPF - Pope Francis (\u002A\u002A) \nXI - Xi Jinping (^^) \nDT - Donald Trump ($$), \nBJ - Boris Johnson: (££)\n");
             String characterC = scan.nextLine();
             String character = "";
             String symbol = "";
             if (characterC.equals("PF")) {
-                if (Characterselect[0] == 1) {
+                if (PFQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
                     continue;
                 } else {
                     character = "Pope Francis";
                     symbol = "\u002A\u002A";
-                    Characterselect[0] = 1;                }
+                    PFQ = 1;              }
             }
             else if (characterC.equals("XI")) {
-                if (Characterselect[1] == 1) {
+                if (XIQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
                     continue;
                 } else {
                     character = "Xi Jingping";
                     symbol = "^^";
-                    Characterselect[1] = 1;
+                    XIQ = 1;
                 }
             } else if (characterC.equals("DT")) {
-                if (Characterselect[2] == 1) {
+                if (DTQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
                     continue;
                 } else {
                     character = "Donald Trump";
                     symbol = "$$";
-                    Characterselect[2] = 1;
+                    DTQ = 1;
                 }
             } else if (characterC.equals("BJ")) {
-                if (Characterselect[3] == 1) {
+                if (BJQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
                     continue;
                 } else {
                     character = "Boris Johnson";
                     symbol = "££";
-                    Characterselect[3] = 1;
+                    BJQ = 1;
                 }
             } else if (!characterC.equals("BJ") || !characterC.equals("XI") || !characterC.equals("DT") || !characterC.equals("PF")) {
                 System.out.println("Invalid character. Please try inputting again.");
