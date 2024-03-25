@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 public class Main {
     public static void main(String[] args) {
         // Creating Country Objects
@@ -60,9 +62,16 @@ public class Main {
 
         int CharacterA = -1;
 
-        while(CharacterA > 4 || CharacterA < 2) {
+        while(CharacterA > 4 ||
+                CharacterA < 2) {
             System.out.println("How many players will be playing? (2, 3, or 4) ");
             CharacterA = Integer.parseInt(scan.nextLine());
+            if(CharacterA > 4 || CharacterA < 2){
+                System.out.println("Invalid input, try again...\n");
+            }
+            else{
+                break;
+            }
         }
 
         ArrayList<Player> players = new ArrayList<Player>();
@@ -76,7 +85,7 @@ public class Main {
             String characterC = scan.nextLine();
             String character = "";
             String symbol = "";
-            if (characterC.equals("PF")) {
+            if (characterC.toUpperCase().equals("PF")||characterC.equals("\u002A\u002A")) {
                 if (PFQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
@@ -86,7 +95,7 @@ public class Main {
                     symbol = "\u002A\u002A";
                     PFQ = 1;              }
             }
-            else if (characterC.equals("XI")) {
+            else if (characterC.toUpperCase().equals("XI")||characterC.equals("^^")) {
                 if (XIQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
@@ -96,7 +105,7 @@ public class Main {
                     symbol = "^^";
                     XIQ = 1;
                 }
-            } else if (characterC.equals("DT")) {
+            } else if (characterC.toUpperCase().equals("DT")||characterC.equals("$$")) {
                 if (DTQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
@@ -106,7 +115,7 @@ public class Main {
                     symbol = "$$";
                     DTQ = 1;
                 }
-            } else if (characterC.equals("BJ")) {
+            } else if (characterC.toUpperCase().equals("BJ")||characterC.equals("££")) {
                 if (BJQ == 1) {
                     System.out.println("Character already taken.");
                     i--; // Decrement i to repeat the loop for correct input
@@ -116,7 +125,7 @@ public class Main {
                     symbol = "££";
                     BJQ = 1;
                 }
-            } else if (!characterC.equals("BJ") || !characterC.equals("XI") || !characterC.equals("DT") || !characterC.equals("PF")) {
+            } else if (!characterC.toUpperCase().equals("BJ") || !characterC.toUpperCase().equals("XI") || !characterC.toUpperCase().equals("DT") || !characterC.toUpperCase().equals("PF") || !characterC.equals("££") || !characterC.equals("$$") || !characterC.equals("^^") || !characterC.equals("\u002A\u002A")  ) {
                 System.out.println("Invalid character. Please try inputting again.");
                 i--;
                 continue;

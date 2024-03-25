@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,15 +29,15 @@ public class Game {
     }
     public void upgrade(Player player, List<Countries> countries){
         String upgradeYesOrNo = "";
-        while(!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")){
+        while(!upgradeYesOrNo.toUpperCase().equals("Y") && !upgradeYesOrNo.toUpperCase().equals("N")){
             Scanner yesNoScanner = new Scanner(System.in);
             //                          upgrading properties
             System.out.println("Would you like to upgrade one of your properties? (Y/N)");
             upgradeYesOrNo = yesNoScanner.nextLine();
-            if (!upgradeYesOrNo.equals("Y") && !upgradeYesOrNo.equals("N")) {
+            if (!upgradeYesOrNo.toUpperCase().equals("Y") && !upgradeYesOrNo.toUpperCase().equals("N")) {
                 System.out.println("Invalid input. Please try  again.");
             }
-        } if (upgradeYesOrNo.equals("Y")) {
+        } if (upgradeYesOrNo.toUpperCase().equals("Y")) {
             System.out.println("Here are your owned properties: ");
             for (int j = 0; j < countries.size(); j++) {
                 if (countries.get(j).getOwner() == player) {
@@ -49,14 +48,14 @@ public class Game {
             }
             String y = "";
             while (!y.equals("0") && !y.equals("1") &&!y.equals("2") && !y.equals("3") &&!y.equals("4") && !y.equals("5") &&!y.equals("6") && !y.equals("7") &&!y.equals("8") && !y.equals("9") &&!y.equals("1") && !y.equals("10") &&!y.equals("11") && !y.equals("12") && !y.equals("14") &&!y.equals("15") && !y.equals("16") &&!y.equals("17") && !y.equals("18") &&!y.equals("19") && !y.equals("20") &&!y.equals("21") && !y.equals("22") &&!y.equals("23") && !y.equals("24") && !y.equals("25") && !y.equals("26") && !y.equals("27")) {
-                System.out.println("Which country would you like to upgrade? \nYou must pay the original cost again to upgrade the level.\nIf you decide not to, enter 0.");
+                System.out.println("Which country would you like to upgrade? \nYou must pay the original cost again to upgrade the level.\nEnter the position of the country you wish upgrade it.\nIf you decide not to, enter 0.");
                 Scanner scanner = new Scanner(System.in);
                 y = scanner.nextLine();
             }
             int indexBase = Integer.parseInt(y);
             int index = indexBase-1;
             int yInt = Integer.parseInt(y);
-            if (yInt > 0 && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
+            if (yInt > 0 && yInt < countries.size() && countries.get(index).getOwner() == player && player.getMoney() >= countries.get(index).getCost()) {
 
                 System.out.println("Upgrading " + countries.get(index).getName());
                 countries.get(index).levelUp();
@@ -86,7 +85,7 @@ public class Game {
             int diceTotalValue = dice1value + dice2value;
             String typeToRoll = "";
             Scanner scanner = new Scanner(System.in);
-            while (!typeToRoll.equals("R")) {
+            while (!typeToRoll.toUpperCase().equals("R")) {
                 System.out.println("Type \"R\" to roll your dice");
                 typeToRoll = scanner.next();
             }
@@ -183,19 +182,18 @@ public class Game {
                         upgrade(player,countries);
                     } else if (newPosition == 13) {
                         System.out.println("Miss a turn! You landed on position 13!");
-                        break;
                     } else {
                         if (country.getStatus() == false) {
                             sleep(500);
                             String x = "";
-                            while (!x.equals("Y") && !x.equals("N")) {
+                            while (!x.toUpperCase().equals("Y") && !x.toUpperCase().equals("N")) {
                                 System.out.println("Would you like to buy this property for " + country.getCost() + " ? (Y/N) (You have " + player.getMoney() + " in the bank)");
                                 country.countryCard();
                                 Scanner propertyScanner = new Scanner(System.in);
                                 x = propertyScanner.nextLine();
-                                if (!x.equals("Y") && !x.equals("N")) {
+                                if (!x.toUpperCase().equals("Y") && !x.toUpperCase().equals("N")) {
                                     System.out.println("Invalid input. Please try  again.");
-                                } else if (x.equals("Y")) {
+                                } else if (x.toUpperCase().equals("Y")) {
                                     if (player.getMoney() >= country.getCost()) {
                                         sleep(1000);
                                         System.out.println("You have successfully purchased " + country.getName() + " for " + country.getCost() + "!");
